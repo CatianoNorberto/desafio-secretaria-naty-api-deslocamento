@@ -1,0 +1,65 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  
+}
+
+body{
+  background: #E7EBF0;
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+  transition: filter 0.2s;
+}
+
+.productCards{
+  gap: 20px;
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: repeat(auto-fit, minmax(21.5625rem, 1fr));
+}
+
+.headerTop{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.headerContent{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px auto;
+}
+/* .deleandAdd{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
+} */
+
+.typographyContent{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.css-1oqqzyl-MuiContainer-root{
+  display: flex;
+  flex-direction: column;
+  margin-top: 82px;
+}
+
+.css-46bh2p-MuiCardContent-root{
+  text-align: center;
+}
+.css-17cjn1v-MuiContainer-root{
+  padding: 0;
+}
