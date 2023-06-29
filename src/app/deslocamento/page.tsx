@@ -16,7 +16,6 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 import dayjs from 'dayjs'
 import { Form } from '@unform/web'
 
-import Header from '../../../components/Header'
 import NewModal from '../../../components/UI/Modal/NewModal'
 import DeslocamentoCards from '../../../components/Deslocamento'
 import FormTextField from '../../../components/UI/Forms/FormTextField'
@@ -289,8 +288,6 @@ export default function Deslocamento() {
       </NewModal>
 
       <Container maxWidth="lg">
-        <Header />
-
         <div>
           <section className="headerContent">
             <Box flex={1} display="flex" justifyContent="end">

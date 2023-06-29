@@ -14,7 +14,6 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
 
 import { Form } from '@unform/web'
 
-import Header from '../../../components/Header'
 import VeiculoCards from '../../../components/Veiculo'
 import NewModal from '../../../components/UI/Modal/NewModal'
 import FormTextField from '../../../components/UI/Forms/FormTextField'
@@ -137,8 +136,6 @@ export default function Veiculo() {
         </Box>
       </NewModal>
       <Container maxWidth="lg">
-        <Header />
-
         <div>
           <section className="headerContent">
             <Box flex={1} display="flex" justifyContent="end">

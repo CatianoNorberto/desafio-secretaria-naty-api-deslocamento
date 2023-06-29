@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 import { ThemeProvider, CssBaseline } from '@mui/material'
 
-// import Header from '../../components/Header'
+import Header from '../../components/Header'
 
 import { theme, roboto } from '../theme/themes'
 import '../styles/global.css'
@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={roboto.className}>
       <ThemeProvider theme={theme}>
-        {/* <Header /> */}
+        <Header />
         <CssBaseline />
         <body>{children}</body>
       </ThemeProvider>

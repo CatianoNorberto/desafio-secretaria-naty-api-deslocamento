@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import Container from '@mui/material/Container'
 
 import Cards from '../../components/Card'
-import Header from '../../components/Header'
 import Toolbar from '../../components/Toolbar'
 
 interface Props {
@@ -41,8 +40,6 @@ export default function Home() {
 
   return (
     <Container maxWidth="lg">
-      <Header />
-
       <div>
         <section className="headerContent">
           <Toolbar />
