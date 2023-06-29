@@ -48,7 +48,7 @@ export default function Veiculo() {
     fetchData()
   }, [])
 
-  // Criação de metodo post
+  // funcão para add novos items, usando metodo post
   const handleSubmit = async (data: IformTextFieldVeiculo) => {
     try {
       const response = await fetch(

@@ -23,44 +23,44 @@ import Swal from 'sweetalert2'
 
 interface Props {
   id: string
-  kmInicial: string
-  kmFinal: string
+  kmInicial: number
+  kmFinal: number
   inicioDeslocamento: string
   fimDeslocamento: string
   checkList: string
   motivo: string
   observacao: string
-  idCondutor: string
-  idVeiculo: string
-  idCliente: string
+  idCondutor: number
+  idVeiculo: number
+  idCliente: number
 }
 
 interface IformTextFields {
   id?: string
-  kmInicial?: string
-  kmFinal?: string
+  kmInicial?: number
+  kmFinal: number
   inicioDeslocamento?: string
-  fimDeslocamento?: string
+  fimDeslocamento: string
   checkList?: string
   motivo?: string
-  observacao?: string
-  idCondutor?: string
-  idVeiculo?: string
-  idCliente?: string
+  observacao: string
+  idCondutor?: number
+  idVeiculo?: number
+  idCliente?: number
 }
 
 interface IformTextFieldDetalhe {
   id: string
-  kmInicial: string
-  kmFinal: string
+  kmInicial: number
+  kmFinal: number
   inicioDeslocamento: string
   fimDeslocamento: string
   checkList: string
   motivo: string
   observacao: string
-  idCondutor: string
-  idVeiculo: string
-  idCliente: string
+  idCondutor: number
+  idVeiculo: number
+  idCliente: number
 }
 
 export default function DeslocamentoCard({
@@ -181,28 +181,28 @@ export default function DeslocamentoCard({
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <FormTextField
-                    autoComplete="kmInicial"
                     name="kmInicial"
+                    type="number"
                     fullWidth
                     id="kmInicial"
                     label="Km Inicial"
-                    autoFocus
+                    autoComplete="kmInicial"
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormTextField
-                    autoComplete="kmFinal"
                     name="kmFinal"
+                    type="number"
                     fullWidth
                     id="kmFinal"
                     label="Km Final"
-                    autoFocus
+                    autoComplete="kmFinal"
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormTextField
                     fullWidth
-                    type="date"
+                    type="text"
                     id="inicioDeslocamento"
                     label="Inicio Deslocamento"
                     name="inicioDeslocamento"
@@ -212,7 +212,7 @@ export default function DeslocamentoCard({
                 <Grid item xs={12} sm={6}>
                   <FormTextField
                     fullWidth
-                    type="date"
+                    type="text"
                     id="fimDeslocamento"
                     label="Deslocamento Final"
                     name="fimDeslocamento"
@@ -223,6 +223,7 @@ export default function DeslocamentoCard({
                   <FormTextField
                     fullWidth
                     id="checkList"
+                    type="text"
                     label="Check List"
                     name="checkList"
                     autoComplete="checkList"
@@ -232,6 +233,7 @@ export default function DeslocamentoCard({
                   <FormTextField
                     fullWidth
                     id="motivo"
+                    type="text"
                     label="Motivo"
                     name="motivo"
                     autoComplete="motivo"
@@ -242,7 +244,7 @@ export default function DeslocamentoCard({
                     fullWidth
                     name="observacao"
                     label="Observação"
-                    type="observacao"
+                    type="text"
                     id="observacao"
                     autoComplete="observacao"
                   />
@@ -252,7 +254,7 @@ export default function DeslocamentoCard({
                     fullWidth
                     name="idCondutor"
                     label="Id do Contudor"
-                    type="idCondutor"
+                    type="number"
                     id="idCondutor"
                     autoComplete="idCondutor"
                   />
@@ -262,7 +264,7 @@ export default function DeslocamentoCard({
                     fullWidth
                     name="idVeiculo"
                     label="Id do Veiculo"
-                    type="idVeiculo"
+                    type="number"
                     id="idVeiculo"
                     autoComplete="idVeiculo"
                   />
@@ -272,7 +274,7 @@ export default function DeslocamentoCard({
                     fullWidth
                     name="idCliente"
                     label="Id do Cliente"
-                    type="idCliente"
+                    type="number"
                     id="idCliente"
                     autoComplete="idCliente"
                   />

@@ -11,6 +11,8 @@ import {
   DialogActions,
 } from '@mui/material'
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
+
+import dayjs from 'dayjs'
 import { Form } from '@unform/web'
 
 import Header from '../../../components/Header'
@@ -26,7 +28,7 @@ interface IformTextFieldCondutor {
   vencimentoHabilitacao: string
 }
 
-export default function Home() {
+export default function Condutor() {
   const [data, setData] = useState<IformTextFieldCondutor[]>([])
   const [isOpenModal, setIsOpenModal] = useState(false)
 
@@ -47,7 +49,7 @@ export default function Home() {
     fetchData()
   }, [])
 
-  // Criação de metodo post
+  // funcão para add novos items, usando metodo post
   const handleSubmit = async (data: IformTextFieldCondutor) => {
     try {
       const response = await fetch(
@@ -159,16 +161,24 @@ export default function Home() {
 
           <section>
             <div className="productCards">
-              {data?.map((item) => (
-                <CondutorCards
-                  key={item.id}
-                  id={item.id}
-                  nome={item.nome}
-                  numeroHabilitacao={item.numeroHabilitacao}
-                  catergoriaHabilitacao={item.catergoriaHabilitacao}
-                  vencimentoHabilitacao={item.vencimentoHabilitacao}
-                />
-              ))}
+              {data?.map((item) => {
+                const formatarData = (data: any) => {
+                  return dayjs(data).format('DD/MM/YYYY')
+                }
+
+                const vencimentoData = formatarData(item.vencimentoHabilitacao)
+
+                return (
+                  <CondutorCards
+                    key={item.id}
+                    id={item.id}
+                    nome={item.nome}
+                    numeroHabilitacao={item.numeroHabilitacao}
+                    catergoriaHabilitacao={item.catergoriaHabilitacao}
+                    vencimentoHabilitacao={vencimentoData}
+                  />
+                )
+              })}
             </div>
           </section>
         </div>

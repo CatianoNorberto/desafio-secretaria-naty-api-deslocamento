@@ -124,6 +124,8 @@ export default function CondutoCard({
     }
   }
 
+  // permite que busca os elementos do meu card e mostra de forma simplificada,
+  // como são as mesmas informações que aparecerem no card, em vez de ir buscar pelo api
   useEffect(() => {
     setItem({
       catergoriaHabilitacao,

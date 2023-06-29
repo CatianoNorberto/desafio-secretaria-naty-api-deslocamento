@@ -140,6 +140,7 @@ export default function ActionAreaCard({
     }
   }
 
+  // função faz a listagem de cliente pelo id
   const fetchItem = async (id: string) => {
     try {
       const response = await fetch(

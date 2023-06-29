@@ -32,7 +32,7 @@ interface IformTextFieldClients {
 export default function BarraDeFerramentas() {
   const [isOpenModal, setIsOpenModal] = useState(false)
 
-  // Criação de metodo post
+  // funcão para add novos items, usando metodo post
   const handleSubmit = async (data: IformTextFieldClients) => {
     try {
       const response = await fetch(
