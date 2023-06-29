@@ -1,43 +1,57 @@
 'use client'
 
-import { useState } from 'react'
 import {
-  Drawer,
-  IconButton,
   List,
+  ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Box,
 } from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu'
-const pages = ['Home', 'Condutor', 'Veiculo', 'Deslocamento']
+
+import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined'
+import ElectricCarTwoToneIcon from '@mui/icons-material/ElectricCarTwoTone'
+import TransferWithinAStationTwoToneIcon from '@mui/icons-material/TransferWithinAStationTwoTone'
+import AirlineSeatReclineNormalTwoToneIcon from '@mui/icons-material/AirlineSeatReclineNormalTwoTone'
+
+const navLinks = [
+  {
+    title: 'Cliente',
+    path: '/',
+    icon: <Diversity3OutlinedIcon />,
+  },
+  {
+    title: 'Condutor',
+    path: '/condutor',
+    icon: <AirlineSeatReclineNormalTwoToneIcon />,
+  },
+  {
+    title: 'Deslocamento',
+    path: '/deslocamento',
+    icon: <TransferWithinAStationTwoToneIcon />,
+  },
+  {
+    title: 'Veiculo',
+    path: '/veiculo',
+    icon: <ElectricCarTwoToneIcon />,
+  },
+]
 
 export default function DrawerComp() {
-  const [openDrawer, setOpenDrawer] = useState(false)
-
   return (
-    <>
-      <Drawer
-        anchor="left"
-        open={openDrawer}
-        onClose={() => setOpenDrawer(false)}
-      >
+    <Box sx={{ width: 250 }}>
+      <nav>
         <List>
-          {pages.map((page, index) => (
-            <ListItemButton key={index}>
-              <ListItemIcon>
-                <ListItemText>{page}</ListItemText>
-              </ListItemIcon>
-            </ListItemButton>
+          {navLinks.map((item) => (
+            <ListItem key={item.title}>
+              <ListItemButton component="a" href={item.path}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText>{item.title}</ListItemText>
+              </ListItemButton>
+            </ListItem>
           ))}
         </List>
-      </Drawer>
-      <IconButton
-        sx={{ color: 'white', marginLeft: 'auto' }}
-        onClick={() => setOpenDrawer(!openDrawer)}
-      >
-        <MenuIcon sx={{ color: 'white' }} />
-      </IconButton>
-    </>
+      </nav>
+    </Box>
   )
 }
