@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   Box,
@@ -21,47 +21,8 @@ import NewModal from '../components/UI/Modal/NewModal'
 import FormTextField from '../components/UI/Forms/FormTextField'
 import Swal from 'sweetalert2'
 
-interface Props {
-  id: string
-  kmInicial: number
-  kmFinal: number
-  inicioDeslocamento: string
-  fimDeslocamento: string
-  checkList: string
-  motivo: string
-  observacao: string
-  idCondutor: number
-  idVeiculo: number
-  idCliente: number
-}
-
-interface IformTextFields {
-  id?: string
-  kmInicial?: number
-  kmFinal: number
-  inicioDeslocamento?: string
-  fimDeslocamento: string
-  checkList?: string
-  motivo?: string
-  observacao: string
-  idCondutor?: number
-  idVeiculo?: number
-  idCliente?: number
-}
-
-interface IformTextFieldDetalhe {
-  id: string
-  kmInicial: number
-  kmFinal: number
-  inicioDeslocamento: string
-  fimDeslocamento: string
-  checkList: string
-  motivo: string
-  observacao: string
-  idCondutor: number
-  idVeiculo: number
-  idCliente: number
-}
+import IdeslocamentoListerDTO from '../src/interfaces/deslocamento/dtos/IdeslocamentoListerDTO'
+import IdeslocamentoEditDTO from '../src/interfaces/deslocamento/dtos/IdeslocamentoEditDTO'
 
 export default function DeslocamentoCard({
   id,
@@ -75,9 +36,9 @@ export default function DeslocamentoCard({
   idCondutor,
   idVeiculo,
   idCliente,
-}: Props) {
-  const [item, setItem] = useState<IformTextFieldDetalhe>(
-    null as unknown as IformTextFieldDetalhe,
+}: IdeslocamentoListerDTO) {
+  const [item, setItem] = useState<IdeslocamentoListerDTO>(
+    null as unknown as IdeslocamentoListerDTO,
   )
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [isOpenModalBig, setIsOpenModalBig] = useState(false)
@@ -125,7 +86,7 @@ export default function DeslocamentoCard({
   }
 
   // função editar o cliente
-  const handleEdit = async (id: string, data: IformTextFields) => {
+  const handleEdit = async (id: string, data: IdeslocamentoEditDTO) => {
     try {
       const response = await fetch(
         `https://api-deslocamento.herokuapp.com/api/v1/Deslocamento/${id}/EncerrarDeslocamento`,
@@ -148,17 +109,35 @@ export default function DeslocamentoCard({
     }
   }
 
-  const fetchItem = async (id: string) => {
-    try {
-      const response = await fetch(
-        `https://api-deslocamento.herokuapp.com/api/v1/Deslocamento/${id}`,
-      )
-      const jsonData = await response.json()
-      setItem(jsonData)
-    } catch (error) {
-      console.error('Ocorreu um erro:', error)
-    }
-  }
+  // permite que busca os elementos do meu card e mostra de forma simplificada,
+  // como são as mesmas informações que aparecerem no card, em vez de ir buscar pelo api
+  useEffect(() => {
+    setItem({
+      id,
+      kmInicial,
+      kmFinal,
+      inicioDeslocamento,
+      fimDeslocamento,
+      checkList,
+      motivo,
+      observacao,
+      idCondutor,
+      idVeiculo,
+      idCliente,
+    })
+  }, [
+    id,
+    kmInicial,
+    kmFinal,
+    inicioDeslocamento,
+    fimDeslocamento,
+    checkList,
+    motivo,
+    observacao,
+    idCondutor,
+    idVeiculo,
+    idCliente,
+  ])
 
   const toggleModal = () => {
     setIsOpenModal(true)
@@ -181,16 +160,6 @@ export default function DeslocamentoCard({
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <FormTextField
-                    name="kmInicial"
-                    type="number"
-                    fullWidth
-                    id="kmInicial"
-                    label="Km Inicial"
-                    autoComplete="kmInicial"
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormTextField
                     name="kmFinal"
                     type="number"
                     fullWidth
@@ -202,41 +171,10 @@ export default function DeslocamentoCard({
                 <Grid item xs={12} sm={6}>
                   <FormTextField
                     fullWidth
-                    type="text"
-                    id="inicioDeslocamento"
-                    label="Inicio Deslocamento"
-                    name="inicioDeslocamento"
-                    autoComplete="inicioDeslocamento"
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormTextField
-                    fullWidth
-                    type="text"
+                    type="date"
                     id="fimDeslocamento"
-                    label="Deslocamento Final"
                     name="fimDeslocamento"
                     autoComplete="fimDeslocamento"
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormTextField
-                    fullWidth
-                    id="checkList"
-                    type="text"
-                    label="Check List"
-                    name="checkList"
-                    autoComplete="checkList"
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormTextField
-                    fullWidth
-                    id="motivo"
-                    type="text"
-                    label="Motivo"
-                    name="motivo"
-                    autoComplete="motivo"
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -247,36 +185,6 @@ export default function DeslocamentoCard({
                     type="text"
                     id="observacao"
                     autoComplete="observacao"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormTextField
-                    fullWidth
-                    name="idCondutor"
-                    label="Id do Contudor"
-                    type="number"
-                    id="idCondutor"
-                    autoComplete="idCondutor"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormTextField
-                    fullWidth
-                    name="idVeiculo"
-                    label="Id do Veiculo"
-                    type="number"
-                    id="idVeiculo"
-                    autoComplete="idVeiculo"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormTextField
-                    fullWidth
-                    name="idCliente"
-                    label="Id do Cliente"
-                    type="number"
-                    id="idCliente"
-                    autoComplete="idCliente"
                   />
                 </Grid>
               </Grid>
@@ -498,7 +406,6 @@ export default function DeslocamentoCard({
             variant="contained"
             onClick={() => {
               setIsOpenModalBig(true)
-              fetchItem(id)
             }}
             sx={{ width: '100%' }}
           >

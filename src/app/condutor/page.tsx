@@ -19,16 +19,10 @@ import CondutorCards from '../../../components/Condutor'
 import NewModal from '../../../components/UI/Modal/NewModal'
 import FormTextField from '../../../components/UI/Forms/FormTextField'
 
-interface IformTextFieldCondutor {
-  id: string
-  nome: string
-  numeroHabilitacao: string
-  catergoriaHabilitacao: string
-  vencimentoHabilitacao: string
-}
+import IcondutorListerDTO from '../../interfaces/condutor/dtos/IcondutorListerDTO'
 
 export default function Condutor() {
-  const [data, setData] = useState<IformTextFieldCondutor[]>([])
+  const [data, setData] = useState<IcondutorListerDTO[]>([])
   const [isOpenModal, setIsOpenModal] = useState(false)
 
   useEffect(() => {
@@ -39,7 +33,6 @@ export default function Condutor() {
         )
         const jsonData = await response.json()
         setData(jsonData)
-        console.log('catiano', jsonData)
       } catch (error) {
         console.error('Ocorreu um erro:', error)
       }
@@ -49,7 +42,7 @@ export default function Condutor() {
   }, [])
 
   // funcão para add novos items, usando metodo post
-  const handleSubmit = async (data: IformTextFieldCondutor) => {
+  const handleSubmit = async (data: IcondutorListerDTO) => {
     try {
       const response = await fetch(
         'https://api-deslocamento.herokuapp.com/api/v1/Condutor',

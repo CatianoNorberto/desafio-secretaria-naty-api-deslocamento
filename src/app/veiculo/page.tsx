@@ -18,16 +18,10 @@ import VeiculoCards from '../../../components/Veiculo'
 import NewModal from '../../../components/UI/Modal/NewModal'
 import FormTextField from '../../../components/UI/Forms/FormTextField'
 
-interface IformTextFieldVeiculo {
-  id: string
-  placa: string
-  marcaModelo: string
-  anoFabricacao: string
-  kmAtual: string
-}
+import IveiculoListerDTO from '../../interfaces/veiculo/dtos/IveiculoListerDTO'
 
 export default function Veiculo() {
-  const [data, setData] = useState<IformTextFieldVeiculo[]>([])
+  const [data, setData] = useState<IveiculoListerDTO[]>([])
   const [isOpenModal, setIsOpenModal] = useState(false)
 
   useEffect(() => {
@@ -38,7 +32,6 @@ export default function Veiculo() {
         )
         const jsonData = await response.json()
         setData(jsonData)
-        console.log('catiano', jsonData)
       } catch (error) {
         console.error('Ocorreu um erro:', error)
       }
@@ -48,7 +41,7 @@ export default function Veiculo() {
   }, [])
 
   // funcão para add novos items, usando metodo post
-  const handleSubmit = async (data: IformTextFieldVeiculo) => {
+  const handleSubmit = async (data: IveiculoListerDTO) => {
     try {
       const response = await fetch(
         'https://api-deslocamento.herokuapp.com/api/v1/Veiculo',

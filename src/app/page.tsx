@@ -7,20 +7,10 @@ import Container from '@mui/material/Container'
 import Cards from '../../components/Card'
 import Toolbar from '../../components/Toolbar'
 
-interface Props {
-  id: string
-  numeroDocumento: string
-  tipoDocumento: string
-  nome: string
-  logradouro: string
-  numero: string
-  bairro: string
-  cidade: string
-  uf: string
-}
+import IclienteListerDTO from '../../src/interfaces/clientes/dtos/IclienteListerDTO'
 
 export default function Home() {
-  const [data, setData] = useState<Props[]>([])
+  const [data, setData] = useState<IclienteListerDTO[]>([])
 
   useEffect(() => {
     const fetchData = async () => {

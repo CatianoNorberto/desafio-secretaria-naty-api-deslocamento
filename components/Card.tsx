@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import {
   Box,
@@ -21,41 +21,8 @@ import NewModal from '../components/UI/Modal/NewModal'
 import FormTextField from '../components/UI/Forms/FormTextField'
 import Swal from 'sweetalert2'
 
-interface Props {
-  id: string
-  numeroDocumento: string
-  tipoDocumento: string
-  nome: string
-  logradouro: string
-  numero: string
-  bairro: string
-  cidade: string
-  uf: string
-}
-
-interface IformTextFields {
-  id?: string
-  numeroDocumento?: string
-  tipoDocumento?: string
-  nome?: string
-  logradouro?: string
-  numero?: string
-  bairro?: string
-  cidade?: string
-  uf?: string
-}
-
-interface IformTextFieldDetalhe {
-  id: string
-  numeroDocumento: string
-  tipoDocumento: string
-  nome: string
-  logradouro: string
-  numero: string
-  bairro: string
-  cidade: string
-  uf: string
-}
+import IclienteListerDTO from '../src/interfaces/clientes/dtos/IclienteListerDTO'
+import IclienteEditDTO from '../src/interfaces/clientes/dtos/IclienteEditDTO'
 
 export default function ActionAreaCard({
   id,
@@ -67,9 +34,9 @@ export default function ActionAreaCard({
   bairro,
   cidade,
   uf,
-}: Props) {
-  const [item, setItem] = useState<IformTextFieldDetalhe>(
-    null as unknown as IformTextFieldDetalhe,
+}: IclienteListerDTO) {
+  const [item, setItem] = useState<IclienteListerDTO>(
+    null as unknown as IclienteListerDTO,
   )
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [isOpenModalBig, setIsOpenModalBig] = useState(false)
@@ -117,7 +84,7 @@ export default function ActionAreaCard({
   }
 
   // função editar o cliente
-  const handleEdit = async (id: string, data: IformTextFields) => {
+  const handleEdit = async (id: string, data: IclienteEditDTO) => {
     try {
       const response = await fetch(
         `https://api-deslocamento.herokuapp.com/api/v1/Cliente/${id}`,
@@ -140,18 +107,31 @@ export default function ActionAreaCard({
     }
   }
 
-  // função faz a listagem de cliente pelo id
-  const fetchItem = async (id: string) => {
-    try {
-      const response = await fetch(
-        `https://api-deslocamento.herokuapp.com/api/v1/Cliente/${id}`,
-      )
-      const jsonData = await response.json()
-      setItem(jsonData)
-    } catch (error) {
-      console.error('Ocorreu um erro:', error)
-    }
-  }
+  // permite que busca os elementos do meu card e mostra de forma simplificada,
+  // como são as mesmas informações que aparecerem no card, em vez de ir buscar pelo api
+  useEffect(() => {
+    setItem({
+      id,
+      numeroDocumento,
+      tipoDocumento,
+      nome,
+      logradouro,
+      numero,
+      bairro,
+      cidade,
+      uf,
+    })
+  }, [
+    id,
+    numeroDocumento,
+    tipoDocumento,
+    nome,
+    logradouro,
+    numero,
+    bairro,
+    cidade,
+    uf,
+  ])
 
   const toggleModal = () => {
     setIsOpenModal(true)
@@ -431,7 +411,6 @@ export default function ActionAreaCard({
             variant="contained"
             onClick={() => {
               setIsOpenModalBig(true)
-              fetchItem(id)
             }}
             sx={{ width: '100%' }}
           >

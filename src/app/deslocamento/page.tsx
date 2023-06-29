@@ -20,54 +20,17 @@ import NewModal from '../../../components/UI/Modal/NewModal'
 import DeslocamentoCards from '../../../components/Deslocamento'
 import FormTextField from '../../../components/UI/Forms/FormTextField'
 
-interface IformTextFieldsProps {
-  id: string
-  kmInicial: number
-  kmFinal: number
-  inicioDeslocamento: string
-  fimDeslocamento: string
-  checkList: string
-  motivo: string
-  observacao: string
-  idCondutor: number
-  idVeiculo: number
-  idCliente: number
-}
-
-interface IformTextFieldsDeslocamento {
-  id?: string
-  kmInicial: number
-  kmFinal?: number
-  inicioDeslocamento: string
-  fimDeslocamento?: string
-  checkList: string
-  motivo: string
-  observacao: string
-  idCondutor: number
-  idVeiculo: number
-  idCliente: number
-}
-
-interface ClienteDataProps {
-  id: number
-  nome: string
-}
-
-interface VeiculoDataProps {
-  id: number
-  marcaModelo: string
-}
-
-interface CondutorDataProps {
-  id: number
-  nome: string
-}
+import IdeslocamentoListerDTO from '../../interfaces/deslocamento/dtos/IdeslocamentoListerDTO'
+import IdeslocamentoAddDTO from '../../interfaces/deslocamento/dtos/IdeslocamentoAddDTO'
+import IClienteDataDTO from '../../interfaces/deslocamento/dtos/IClienteDataDTO'
+import IVeiculoDataDTO from '../../interfaces/deslocamento/dtos/IVeiculoDataDTO'
+import ICondutorDataDTO from '../../interfaces/deslocamento/dtos/ICondutorDataDTO'
 
 export default function Deslocamento() {
-  const [data, setData] = useState<IformTextFieldsProps[]>([])
-  const [dataClientes, setDataClientes] = useState<ClienteDataProps[]>([])
-  const [dataVeiculo, setDataVeiculo] = useState<VeiculoDataProps[]>([])
-  const [dataCondutor, setDataCondutor] = useState<CondutorDataProps[]>([])
+  const [data, setData] = useState<IdeslocamentoListerDTO[]>([])
+  const [dataClientes, setDataClientes] = useState<IClienteDataDTO[]>([])
+  const [dataVeiculo, setDataVeiculo] = useState<IVeiculoDataDTO[]>([])
+  const [dataCondutor, setDataCondutor] = useState<ICondutorDataDTO[]>([])
   const [isOpenModal, setIsOpenModal] = useState(false)
 
   // função para listar os items para
@@ -133,7 +96,7 @@ export default function Deslocamento() {
   }, [])
 
   // funcão para add novos items, usando metodo post
-  const handleSubmit = async (dataForm: IformTextFieldsDeslocamento) => {
+  const handleSubmit = async (dataForm: IdeslocamentoAddDTO) => {
     try {
       const response = await fetch(
         'https://api-deslocamento.herokuapp.com/api/v1/Deslocamento/IniciarDeslocamento',

@@ -17,23 +17,13 @@ import { Form } from '@unform/web'
 import NewModal from '../components/UI/Modal/NewModal'
 import FormTextField from '../components/UI/Forms/FormTextField'
 
-interface IformTextFieldClients {
-  id: string
-  numeroDocumento: string
-  tipoDocumento: string
-  nome: string
-  logradouro: string
-  numero: string
-  bairro: string
-  cidade: string
-  uf: string
-}
+import IclienteListerDTO from '../src/interfaces/clientes/dtos/IclienteListerDTO'
 
 export default function BarraDeFerramentas() {
   const [isOpenModal, setIsOpenModal] = useState(false)
 
   // funcão para add novos items, usando metodo post
-  const handleSubmit = async (data: IformTextFieldClients) => {
+  const handleSubmit = async (data: IclienteListerDTO) => {
     try {
       const response = await fetch(
         'https://api-deslocamento.herokuapp.com/api/v1/Cliente',
@@ -77,6 +67,7 @@ export default function BarraDeFerramentas() {
                     name="numeroDocumento"
                     required
                     fullWidth
+                    type="text"
                     id="numeroDocumento"
                     label="Numero do Documento"
                     autoFocus
@@ -86,6 +77,7 @@ export default function BarraDeFerramentas() {
                   <FormTextField
                     required
                     fullWidth
+                    type="text"
                     id="tipoDocumento"
                     label="Tipo de Documento"
                     name="tipoDocumento"
@@ -96,6 +88,7 @@ export default function BarraDeFerramentas() {
                   <FormTextField
                     required
                     fullWidth
+                    type="text"
                     id="nome"
                     label="Nome"
                     name="nome"
@@ -106,6 +99,7 @@ export default function BarraDeFerramentas() {
                   <FormTextField
                     required
                     fullWidth
+                    type="text"
                     id="logradouro"
                     label="Logradouro"
                     name="logradouro"
@@ -116,9 +110,9 @@ export default function BarraDeFerramentas() {
                   <FormTextField
                     required
                     fullWidth
+                    type="text"
                     name="numero"
                     label="Numero"
-                    type="numero"
                     id="numero"
                     autoComplete="numero"
                   />
@@ -127,9 +121,9 @@ export default function BarraDeFerramentas() {
                   <FormTextField
                     required
                     fullWidth
+                    type="text"
                     name="bairro"
                     label="Bairro"
-                    type="bairro"
                     id="bairro"
                     autoComplete="bairro"
                   />
@@ -138,9 +132,9 @@ export default function BarraDeFerramentas() {
                   <FormTextField
                     required
                     fullWidth
+                    type="text"
                     name="cidade"
                     label="Cidade"
-                    type="cidade"
                     id="cidade"
                     autoComplete="cidade"
                   />
@@ -149,9 +143,9 @@ export default function BarraDeFerramentas() {
                   <FormTextField
                     required
                     fullWidth
+                    type="text"
                     name="uf"
                     label="Uf"
-                    type="uf"
                     id="uf"
                     autoComplete="uf"
                   />

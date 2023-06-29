@@ -21,29 +21,8 @@ import NewModal from '../components/UI/Modal/NewModal'
 import FormTextField from '../components/UI/Forms/FormTextField'
 import Swal from 'sweetalert2'
 
-interface Props {
-  id: string
-  nome: string
-  numeroHabilitacao: string
-  catergoriaHabilitacao: string
-  vencimentoHabilitacao: string
-}
-
-interface IformTextFields {
-  id?: string
-  nome?: string
-  numeroHabilitacao?: string
-  catergoriaHabilitacao?: string
-  vencimentoHabilitacao: string
-}
-
-interface IformTextFieldDetalhe {
-  id: string
-  nome: string
-  numeroHabilitacao: string
-  catergoriaHabilitacao: string
-  vencimentoHabilitacao: string
-}
+import IcondutorListerDTO from '../src/interfaces/condutor/dtos/IcondutorListerDTO'
+import IcondutorEditDTO from '../src/interfaces/condutor/dtos/IcondutorEditDTO'
 
 export default function CondutoCard({
   id,
@@ -51,9 +30,9 @@ export default function CondutoCard({
   numeroHabilitacao,
   catergoriaHabilitacao,
   vencimentoHabilitacao,
-}: Props) {
-  const [item, setItem] = useState<IformTextFieldDetalhe>(
-    null as unknown as IformTextFieldDetalhe,
+}: IcondutorListerDTO) {
+  const [item, setItem] = useState<IcondutorListerDTO>(
+    null as unknown as IcondutorListerDTO,
   )
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [isOpenModalBig, setIsOpenModalBig] = useState(false)
@@ -101,7 +80,7 @@ export default function CondutoCard({
   }
 
   // função editar o cliente
-  const handleEdit = async (id: string, data: IformTextFields) => {
+  const handleEdit = async (id: string, data: IcondutorEditDTO) => {
     try {
       const response = await fetch(
         `https://api-deslocamento.herokuapp.com/api/v1/Condutor/${id}`,
@@ -161,24 +140,6 @@ export default function CondutoCard({
           <Form onSubmit={(dados) => handleEdit(id, dados)}>
             <DialogContent>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <FormTextField
-                    fullWidth
-                    id="nome"
-                    label="Nome"
-                    name="nome"
-                    autoComplete="nome"
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormTextField
-                    fullWidth
-                    id="numeroHabilitacao"
-                    label="Número de Habilitação"
-                    name="numeroHabilitacao"
-                    autoComplete="numeroHabilitacao"
-                  />
-                </Grid>
                 <Grid item xs={12}>
                   <FormTextField
                     fullWidth
@@ -193,7 +154,6 @@ export default function CondutoCard({
                   <FormTextField
                     fullWidth
                     name="vencimentoHabilitacao"
-                    label="Vencimento de Habilitacao"
                     type="date"
                     id="vencimentoHabilitacao"
                     autoComplete="vencimentoHabilitacao"

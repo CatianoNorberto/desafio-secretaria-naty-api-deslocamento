@@ -21,29 +21,8 @@ import NewModal from '../components/UI/Modal/NewModal'
 import FormTextField from '../components/UI/Forms/FormTextField'
 import Swal from 'sweetalert2'
 
-interface Props {
-  id: string
-  placa: string
-  marcaModelo: string
-  anoFabricacao: string
-  kmAtual: string
-}
-
-interface IformTextFields {
-  id?: string
-  placa?: string
-  marcaModelo?: string
-  anoFabricacao?: string
-  kmAtual?: string
-}
-
-interface IformTextFieldDetalhe {
-  id: string
-  placa: string
-  marcaModelo: string
-  anoFabricacao: string
-  kmAtual: string
-}
+import IveiculoListerDTO from '../src/interfaces/veiculo/dtos/IveiculoListerDTO'
+import IveiculoEditDTO from '../src/interfaces/veiculo/dtos/IveiculoEditDTO'
 
 export default function VeiculoCard({
   id,
@@ -51,9 +30,9 @@ export default function VeiculoCard({
   marcaModelo,
   anoFabricacao,
   kmAtual,
-}: Props) {
-  const [item, setItem] = useState<IformTextFieldDetalhe>(
-    null as unknown as IformTextFieldDetalhe,
+}: IveiculoListerDTO) {
+  const [item, setItem] = useState<IveiculoListerDTO>(
+    null as unknown as IveiculoListerDTO,
   )
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [isOpenModalBig, setIsOpenModalBig] = useState(false)
@@ -101,7 +80,7 @@ export default function VeiculoCard({
   }
 
   // função editar o cliente
-  const handleEdit = async (id: string, data: IformTextFields) => {
+  const handleEdit = async (id: string, data: IveiculoEditDTO) => {
     try {
       const response = await fetch(
         `https://api-deslocamento.herokuapp.com/api/v1/Veiculo/${id}`,
@@ -155,15 +134,6 @@ export default function VeiculoCard({
           <Form onSubmit={(dados) => handleEdit(id, dados)}>
             <DialogContent>
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <FormTextField
-                    fullWidth
-                    id="placa"
-                    label="Placa"
-                    name="placa"
-                    autoComplete="placa"
-                  />
-                </Grid>
                 <Grid item xs={12} sm={6}>
                   <FormTextField
                     fullWidth
