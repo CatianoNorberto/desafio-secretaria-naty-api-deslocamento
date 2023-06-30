@@ -111,7 +111,6 @@ export default function Condutor() {
                   <FormTextField
                     fullWidth
                     name="vencimentoHabilitacao"
-                    label="Vencimento de Habilitacao"
                     type="date"
                     id="vencimentoHabilitacao"
                     autoComplete="vencimentoHabilitacao"
